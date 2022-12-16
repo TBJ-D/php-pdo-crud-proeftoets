@@ -10,11 +10,13 @@
 
   $statement = $pdo->prepare($sql);
 
-  $sql = "SELECT * FROM RichestPeople";
+  $sql = "SELECT * FROM RichestPeople ORDER BY Networth desc";
 
   $statement = $pdo->prepare($sql);
 
-  $result = $statement->execute()->FetchAll(PDO::FETCH_OBJ);
+  $statement->execute();
+
+  $result = $statement->FetchAll(PDO::FETCH_OBJ);
 
   $rows = "";
   foreach ($result as $info) {
@@ -28,7 +30,6 @@
                         <img src='img/b_drop.png' alt='kruis'>
                     </a>
                 </td>
-    
               </tr>";
   }
   
@@ -56,8 +57,6 @@
             <th>Leeftijd</th>
             <th>Bedrijf</th>
             <th>Delete</th>
-            <th></th>
-            <th></th>
         </thead>
         <tbody>
             <?= $rows; ?>
